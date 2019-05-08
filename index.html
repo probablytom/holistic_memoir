@@ -1,0 +1,45 @@
+---
+layout: default
+title: Home
+---
+
+<h2>Important information</h2>
+
+<div class="pages">
+    <ul>
+        {% for page in site.pages %}
+        {% unless page.reference or page.kind == "reference" %}{% if page.should_show %}
+        <li class="table-row">
+            <div>
+            <a href="{{ page.url }}">
+                {{ page.title }}
+            </a>
+            </div>
+        </li>
+        {% endif %}{% endunless %}
+        {% endfor %}
+    </ul>
+</div>
+
+<h2>Submitted Content</h2>
+
+<div class="posts">
+    <ul>
+        {% for post in site.posts %}
+        {% unless post.reference or post.kind == "reference" %}
+        <li class="table-row">
+            <div class="table-cell">
+                <a href="{{ post.url }}">
+                    {{ post.author }} {% if post.title %}{{ post.title }}{% endif %}
+                </a>
+            </div>
+            {% if post.kind %}
+            <div class="table-cell">
+                <small>{{ post.kind }}</small>
+            </div>
+            {% endif %}
+        </li>
+        {% endunless %}
+        {% endfor %}
+    </ul>
+</div>
